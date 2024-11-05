@@ -9,5 +9,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.keymap.set("n", "[t", vim.cmd.tabnext)
-vim.keymap.set("n", "]t", vim.cmd.tabprevious)
+vim.keymap.set("n", "]t", vim.cmd.tabnext)
+vim.keymap.set("n", "[t", vim.cmd.tabprevious)
