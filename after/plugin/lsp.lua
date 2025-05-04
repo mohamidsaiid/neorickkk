@@ -3,6 +3,7 @@ local cmp = require'cmp'
 
 local trouble = require'trouble'
 trouble.setup({})
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -61,6 +62,10 @@ lspconfig.gopls.setup {
 -- Add more LSP servers as needed...
 lspconfig.html.setup {
   capabilities = require('cmp_nvim_lsp').default_capabilities(),
+}
+
+lspconfig.bashls.setup{
+    capabilities = capabilities,
 }
 
 vim.api.nvim_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', { noremap = true, silent = true })

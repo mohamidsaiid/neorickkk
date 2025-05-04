@@ -25,7 +25,6 @@ return require('packer').startup(function(use)
   use {
 	  "williamboman/mason.nvim",
 	  "williamboman/mason-lspconfig.nvim",
-	  "neovim/nvim-lspconfig",
   }
 
   use {
@@ -44,7 +43,6 @@ return require('packer').startup(function(use)
   }
 
 use {
-    'nvim-tree/nvim-web-devicons',     -- icons (optional)
     'folke/trouble.nvim',              -- diagnostics UI
     'nvim-lualine/lualine.nvim',       -- statusline (optional)
 }
