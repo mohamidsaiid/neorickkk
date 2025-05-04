@@ -30,4 +30,5 @@ vim.opt.updatetime = 50
 
 vim.opt.autowriteall = true
 
+vim.opt.ignorecase = true
 -- vim.opt.colorcolumn = "80"

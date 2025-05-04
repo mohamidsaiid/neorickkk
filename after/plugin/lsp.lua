@@ -75,3 +75,80 @@ vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', 
 vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>Trouble<CR>', {})
 
+
+-- keep track of where we came from
+local last_buf, last_pos
+
+-- function to go to definition in-place or in a new tab
+local function go_to_definition_in_new_tab_or_current()
+  -- record current buffer and cursor position
+  last_buf = vim.api.nvim_get_current_buf()
+  last_pos = vim.api.nvim_win_get_cursor(0)
+
+  -- prepare LSP params
+  local params = vim.lsp.util.make_position_params()
+  local current_uri = vim.uri_from_bufnr(last_buf)
+
+  -- ask the LSP for definition(s)
+  vim.lsp.buf_request(0, 'textDocument/definition', params, function(err, result)
+    if err then
+      vim.notify("LSP error: " .. err.message, vim.log.levels.ERROR)
+      return
+    end
+    if not result or vim.tbl_isempty(result) then
+      vim.notify("Definition not found", vim.log.levels.INFO)
+      return
+    end
+
+    -- pick the first location (if multiple)
+    local def = vim.tbl_islist(result) and result[1] or result
+    local target_uri = def.uri or def.targetUri
+
+    if target_uri == current_uri then
+      -- same file → just jump there
+      local range = def.range or def.targetSelectionRange
+      vim.api.nvim_win_set_cursor(0, { range.start.line + 1, range.start.character })
+    else
+      -- different file → open new tab and jump
+      vim.cmd('tabnew')
+      vim.lsp.util.jump_to_location(def, 'utf-8')
+    end
+  end)
+end
+
+vim.keymap.set('n', 'gd', function()
+  -- save current location
+  last_buf = vim.api.nvim_get_current_buf()
+  last_pos = vim.api.nvim_win_get_cursor(0)
+  -- jump to definition as usual
+  vim.lsp.buf.definition()
+end, { noremap = true, silent = true, desc = "Go to definition (record position)" })
+
+-- map it to `gD` in normal mode
+vim.keymap.set('n', 'gD', go_to_definition_in_new_tab_or_current, {
+  noremap = true,
+  silent = true,
+  desc = "Go to definition (new tab if different file)"
+})
+
+-- map `<leader>b` to jump back to the recorded spot
+vim.keymap.set('n', '<leader>b', function()
+  if not (last_buf and last_pos) then
+    vim.notify("No previous location recorded", vim.log.levels.WARN)
+    return
+  end
+  -- switch to the window showing the original buffer (even across tabs)
+  local winid = vim.fn.bufwinid(last_buf)
+  if winid ~= -1 then
+    vim.api.nvim_set_current_win(winid)
+  else
+    -- if it's not visible, just open the buffer in the current window
+    vim.cmd('buffer ' .. last_buf)
+  end
+  -- restore cursor
+  vim.api.nvim_win_set_cursor(0, last_pos)
+end, {
+  noremap = true,
+  silent = true,
+  desc = "Jump back to previous location"
+})
