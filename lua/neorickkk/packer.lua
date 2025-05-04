@@ -32,5 +32,22 @@ return require('packer').startup(function(use)
       'nvim-tree/nvim-tree.lua',
       'nvim-tree/nvim-web-devicons',
   }
+  use {
+      'neovim/nvim-lspconfig', -- Configurations for Nvim LSP
+      'hrsh7th/nvim-cmp',      -- Autocompletion plugin
+      'hrsh7th/cmp-nvim-lsp',  -- LSP source for nvim-cmp
+      'L3MON4D3/LuaSnip',      -- Snippets plugin
+      'saadparwaiz1/cmp_luasnip', -- Snippets source for nvim-cmp
+      'hrsh7th/cmp-buffer',    -- Buffer source for nvim-cmp
+      'hrsh7th/cmp-path',      -- Path source for nvim-cmp
+      'hrsh7th/cmp-cmdline',   -- Command line source for nvim-cmp
+  }
+
+use {
+    'nvim-tree/nvim-web-devicons',     -- icons (optional)
+    'folke/trouble.nvim',              -- diagnostics UI
+    'nvim-lualine/lualine.nvim',       -- statusline (optional)
+}
+
 
 end)
