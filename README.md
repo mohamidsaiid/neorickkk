@@ -47,6 +47,9 @@ git clone --depth 1 https://github.com/wbthomason/packer.nvim\
 ```bash
 git clone --depth 1 https://github.com/mohamidsaiid/neorickkk ~/.config/nvim
 ```
+```bash
+mv ~/.config/nvim/after/plugin ~/.config/nvim/after/plugin.bak
+```
 
 ### 4. Install plugins
 
@@ -55,7 +58,9 @@ Launch Neovim and run:
 ```
 :PackerSync
 ```
-
+```bash
+mv ~/.config/nvim/after/plugin.bak ~/.config/nvim/after/plugin
+```
 ## Key Bindings
 
 ### General
