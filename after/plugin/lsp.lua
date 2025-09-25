@@ -1,7 +1,14 @@
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require 'lspconfig'
---
+
+require('mason').setup()
+
+local mason_lspconfig = require 'mason-lspconfig'
+mason_lspconfig.setup {
+    ensure_installed = { "pyright" }
+}
+
 -- Replace <YOUR_LSP_SERVER> with the actual LSP server you want to use (e.g., 'tsserver', 'pyright', 'gopls', etc.)
 lspconfig.clangd.setup {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
@@ -28,8 +35,21 @@ lspconfig.html.setup {
     capabilities = require('cmp_nvim_lsp').default_capabilities(),
 }
 
+lspconfig.cssls.setup {
+    capabilities = capabilities,
+}
+
 lspconfig.bashls.setup {
     capabilities = capabilities,
+}
+
+lspconfig.elixirls.setup {
+    cmd = { "/home/mohamed/configs/elixir-ls/release/language_server.sh" },
+    capabilities = capabilities
+}
+
+lspconfig.ruby_lsp.setup {
+    cmd = { "bundle", "exec", "ruby-lsp" }, -- ensures it uses the project's version
 }
 
 lspconfig.lua_ls.setup {
@@ -129,3 +149,6 @@ end, {
     silent = true,
     desc = "Jump back to previous location"
 })
+
+vim.keymap.set("n", "]g", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[g", vim.diagnostic.goto_prev)

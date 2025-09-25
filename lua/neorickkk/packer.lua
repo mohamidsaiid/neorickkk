@@ -57,4 +57,14 @@ return require('packer').startup(function(use)
             require('Comment').setup()
         end
     }
+    use { 'junegunn/fzf' }
+    use {
+        'adam12/ruby-lsp.nvim'
+    }
+    use({
+        "nvimtools/none-ls.nvim",
+        requires = { "nvim-lua/plenary.nvim" },
+    })
+    use { "akinsho/toggleterm.nvim", tag = '*' }
+    use { "skardyy/neo-img" }
 end)
