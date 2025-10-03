@@ -4,7 +4,7 @@ A feature-rich Neovim configuration focused on providing a powerful development 
 
 ## Prerequisites
 
-- Neovim >= 0.8.0
+- Neovim >= 0.11.0
 - Git
 - A C compiler (for Treesitter)
 - Node.js (for some LSP servers)
@@ -35,31 +35,17 @@ rm -rf $HOME/.local/share/nvim
 rm -rf $HOME/.local/state/nvim
 ```
 
-### 2. Install Packer (package manager)
-
-```bash
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-
-### 3. Clone this configuration
+### 2. Clone this configuration
 
 ```bash
 git clone --depth 1 https://github.com/mohamidsaiid/neorickkk ~/.config/nvim
 ```
-```bash
-mv ~/.config/nvim/after/plugin ~/.config/nvim/after/plugin.bak
-```
-
 ### 4. Install plugins
 
 Launch Neovim and run:
 
 ```
-:PackerSync
-```
-```bash
-mv ~/.config/nvim/after/plugin.bak ~/.config/nvim/after/plugin
+:Lazy
 ```
 ## Key Bindings
 
@@ -122,9 +108,7 @@ mv ~/.config/nvim/after/plugin.bak ~/.config/nvim/after/plugin
 You can customize this configuration by editing the following files:
 
 - `lua/neorickkk/set.lua` - General Neovim settings
-- `lua/neorickkk/packer.lua` - Plugin management
 - `lua/neorickkk/remap.lua` - Key mappings
-- `after/plugin/*.lua` - Plugin-specific configurations
 
 ## Troubleshooting
 
