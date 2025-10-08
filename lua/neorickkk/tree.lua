@@ -69,7 +69,12 @@ return {
 			},
 			view = {
 				width = 30,
+                number = true,
+                relativenumber = true,
 				side = "left",
+                debounce_delay = 10,
+
+
 			},
 		})
 		vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })

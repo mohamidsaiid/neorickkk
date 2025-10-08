@@ -30,6 +30,7 @@ return {
 			-- LSP Configuration
 			local lspconfig = vim.lsp
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			--local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			-- Configure LSP servers
 			lspconfig.config("lua_ls", {
@@ -71,6 +72,9 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.config("clangd", {
+				capabilities = capabilities,
+			})
 			-- Enable LSP servers
 			lspconfig.enable("lua_ls")
 			lspconfig.enable("ts_ls")

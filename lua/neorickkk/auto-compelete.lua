@@ -10,6 +10,7 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		config = function()
 			local luasnip = require("luasnip")
@@ -57,6 +58,7 @@ return {
 				}),
 
 				sources = cmp.config.sources({
+					{ name = "nvim_lsp_signature_help" },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "buffer" },
