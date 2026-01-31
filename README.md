@@ -24,6 +24,9 @@ A feature-rich Neovim configuration focused on providing a powerful development 
 - 💾 Auto-save functionality
 - 📊 Diagnostics UI with Trouble
 - 🔧 Auto-formatting support
+- 💻 Toggle terminal with ToggleTerm
+- ✔️ Git indicators with Gitsigns
+-  Markdown rendering with render-markdown
 
 ## Installation
 
@@ -53,7 +56,7 @@ Launch Neovim and run:
 
 - `<Space>` - Leader key
 - `<leader>pv` - Open file explorer
-- `<leader>t` - Open new terminal in tab
+- `<leader>t` - Toggle floating terminal
 - `]t` - Next tab
 - `[t` - Previous tab
 
