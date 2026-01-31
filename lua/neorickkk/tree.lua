@@ -80,8 +80,7 @@ return {
 		vim.api.nvim_set_hl(0, "NvimTreeNormal", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { bg = "none" })
 		vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { bg = "none" })
-		vim.keymap.set("n", "<leader>pv", ":NvimTreeToggle<CR>")
-		vim.keymap.set("n", "<leader>e", ":NvimTreeFocus<CR>")
+		vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 		vim.keymap.set("n", "<leader>r", ":NvimTreeRefresh<CR>", { desc = "Refresh nvim-tree" })
 	end,
 }

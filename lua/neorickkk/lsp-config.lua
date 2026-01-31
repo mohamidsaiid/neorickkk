@@ -75,13 +75,22 @@ return {
 			lspconfig.config("clangd", {
 				capabilities = capabilities,
 			})
+
+			lspconfig.config("prisma-language-server", {
+				capabilities = capabilities,
+			})
+            lspconfig.config("postgres-language-server", {
+                capabilities = capabilities,
+            })
 			-- Enable LSP servers
 			lspconfig.enable("lua_ls")
 			lspconfig.enable("ts_ls")
 			lspconfig.enable("pyright")
 			lspconfig.enable("rust_analyzer")
+			lspconfig.enable("clangd")
 			lspconfig.enable("gopls")
-
+			lspconfig.enable("prisma-language-server")
+			lspconfig.enable("postgres-language-server")
 			-- LSP Keymaps
 			local opts = { noremap = true, silent = true }
 
