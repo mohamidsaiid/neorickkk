@@ -30,3 +30,7 @@ vim.opt.autowriteall = true
 
 vim.opt.ignorecase = true
 -- vim.opt.colorcolumn = "80"
+
+
+vim.filetype.add({ extension = { ejs = "ejs" } })
+
