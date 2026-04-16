@@ -8,7 +8,7 @@ return {
         transparent_bg = true,
         italic_comment = true,
       })
-      vim.cmd([[colorscheme dracula]])
+      -- vim.cmd([[colorscheme dracula]])
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "dracula",
         callback = function()
