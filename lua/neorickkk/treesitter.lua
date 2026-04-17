@@ -1,20 +1,18 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
-	branch = "master",
-	lazy = false,
-	build = ":TSUpdate",
-	config = function()
-		local config = require("nvim-treesitter.configs")
-		config.setup({
-			sync_install = false,
-			auto_install = true,
-			highlight = {
-				enable = true,
-				additional_vim_regex_highlighting = false,
-			},
-		})
-
-		vim.treesitter.language.register("html", "ejs")
-		vim.treesitter.language.register("javascript", "ejs")
-	end,
+  "romus204/tree-sitter-manager.nvim",
+  config = function()
+    require("tree-sitter-manager").setup({
+      -- List the languages you want installed by default
+      ensure_installed = { 
+        "c", "lua", "vim", "vimdoc", "query", 
+        "markdown", "markdown_inline", "python", "javascript" 
+      },
+      
+      -- Automatically install missing parsers when opening a new file
+      auto_install = true,
+      
+      -- Enable native Treesitter highlighting
+      highlight = true,
+    })
+  end
 }
