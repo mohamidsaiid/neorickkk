@@ -11,6 +11,7 @@ return {
                 additional_args = { "--glob", vim.fn.expand("%") }
             })
         end, { desc = "Live grep in current file" })
+        vim.keymap.set("n", "<leader>fs", builtin.git_status, {})
         local telescope = require("telescope")
         local telescopeConfig = require("telescope.config")
 
