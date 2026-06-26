@@ -12,6 +12,7 @@ return {
             hidden = true,
         },
         notifier = { enabled = true },
+        image = {},
     },
     config = function(_, opts)
         local snacks = require("snacks")

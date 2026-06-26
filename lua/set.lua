@@ -35,3 +35,6 @@ vim.o.mouse = 'a'
 
 vim.filetype.add({ extension = { ejs = "ejs" } })
 
+vim.opt.updatetime = 250
+
+vim.opt.clipboard = 'unnamedplus'

@@ -29,7 +29,13 @@ return {
         config = function()
             -- LSP Configuration
             local lspconfig = vim.lsp
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local capabilities = require("cmp_nvim_lsp").setup({
+                sources = {
+                    { name = 'nvim_lsp' },
+                    { name = 'luasnip' }, -- Optional: for code snippets
+                    { name = 'path' }, -- Optional: for file path completions
+                }
+            })
             --local capabilities = require("blink.cmp").get_lsp_capabilities()
 
             -- Configure LSP servers
