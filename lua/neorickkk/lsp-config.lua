@@ -59,7 +59,7 @@ return {
                 capabilities = capabilities,
             })
 
-            lspconfig.config("pyright", {
+            lspconfig.config("basedpyright", {
                 capabilities = capabilities,
             })
 
