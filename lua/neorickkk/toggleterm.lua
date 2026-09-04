@@ -30,14 +30,18 @@ return {
 		local function set_terminal_keymaps()
 			local keyMapOpts = { noremap = true, silent = true }
 			vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], keyMapOpts)
-			vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], keyMapOpts) -- Optional: jk to exit
 			vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]],keyMapOpts)
 			vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], keyMapOpts)
 			vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], keyMapOpts)
 			vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], keyMapOpts)
 		end
 
-		-- Auto-set keymaps on terminal open
-		vim.api.nvim_create_autocmd("TermOpen", { callback = set_terminal_keymaps })
+		-- Auto-set keymaps on terminal open.
+		-- Scoped to toggleterm's own buffers so these maps never leak into other
+		-- terminal UIs (lazygit, etc.) that need the raw keys themselves.
+		vim.api.nvim_create_autocmd("TermOpen", {
+			pattern = { "term://*#toggleterm#*", "term://*::toggleterm::*" },
+			callback = set_terminal_keymaps,
+		})
 	end,
 }

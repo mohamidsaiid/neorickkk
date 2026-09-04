@@ -38,3 +38,6 @@ vim.filetype.add({ extension = { ejs = "ejs" } })
 vim.opt.updatetime = 250
 
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.textwidth = 80
+vim.opt.wrap = true       -- Enable line wrapping
+vim.opt.linebreak = true  -- Wrap at words instead of cutting off mid-word
