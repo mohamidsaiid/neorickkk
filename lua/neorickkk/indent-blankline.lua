@@ -13,6 +13,7 @@ return {
         },
         notifier = { enabled = true },
         image = {},
+        rocks = { enabled = false },
     },
     config = function(_, opts)
         local snacks = require("snacks")

@@ -43,11 +43,24 @@ return {
     },
     {
         'MeanderingProgrammer/render-markdown.nvim',
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-        -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+        -- Parsers (markdown, markdown_inline) come from tree-sitter-manager.nvim,
+        -- so nvim-treesitter is deliberately not a dependency here -- two parser
+        -- managers in one config fight over installs.
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        ft = { 'markdown' },
+        keys = {
+            { '<leader>mrt', '<cmd>RenderMarkdown toggle<cr>', ft = 'markdown', desc = 'Markdown: Toggle inline render' },
+        },
         ---@module 'render-markdown'
         ---@type render.md.UserConfig
-        opts = {},
-    }
+        opts = {
+            file_types = { 'markdown' },
+            -- Sign column is already busy with gitsigns + diagnostics (signcolumn=yes),
+            -- so keep heading/code markers out of it.
+            heading = { sign = false },
+            code = { sign = false, width = 'block', right_pad = 2 },
+            -- Feeds heading/callout completions into nvim-cmp via the LSP source.
+            completions = { lsp = { enabled = true } },
+        },
+    },
 }
