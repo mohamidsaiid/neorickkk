@@ -12,6 +12,10 @@ return {
             })
         end, { desc = "Live grep in current file" })
         vim.keymap.set("n", "<leader>fs", builtin.git_status, {})
+        vim.keymap.set("n", "<leader>fc", builtin.git_commits, { desc = "Git commits" })
+        vim.keymap.set("n", "<leader>fC", builtin.git_bcommits, { desc = "Git commits for this file" })
+        vim.keymap.set("n", "<leader>fb", builtin.git_branches, { desc = "Git branches" })
+        vim.keymap.set("n", "<leader>fS", builtin.git_stash, { desc = "Git stash" })
         local telescope = require("telescope")
         local telescopeConfig = require("telescope.config")
 
